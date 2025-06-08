@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hobby_releases",
+  "info": {
+    "singularName": "hobby-release",
+    "pluralName": "hobby-releases",
+    "displayName": "Hobby Release"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}
