@@ -11,8 +11,60 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "artist": {
+      "type": "string",
+      "required": true
+    },
+    "release_date": {
+      "type": "date",
+      "required": true
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "notes": {
+      "type": "text"
+    },
+    "bandcamp_link": {
       "type": "string"
+    },
+    "player_embed_code": {
+      "type": "string"
+    },
+    "artist_link": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "Single",
+      "enum": [
+        "Single",
+        "Album",
+        "EP"
+      ]
+    },
+    "copyright": {
+      "type": "string",
+      "required": true
+    },
+    "spotify_link": {
+      "type": "string"
+    },
+    "label_release_number": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "min": 0
     }
   }
 }

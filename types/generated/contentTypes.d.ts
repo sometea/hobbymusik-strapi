@@ -373,6 +373,39 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiArchiveReleaseArchiveRelease
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'archive_releases';
+  info: {
+    displayName: 'Archive Release';
+    pluralName: 'archive-releases';
+    singularName: 'archive-release';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    artist: Schema.Attribute.String;
+    cover: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    download: Schema.Attribute.Media<'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::archive-release.archive-release'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    release_date: Schema.Attribute.Date;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHobbyReleaseHobbyRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'hobby_releases';
@@ -385,17 +418,38 @@ export interface ApiHobbyReleaseHobbyRelease
     draftAndPublish: true;
   };
   attributes: {
+    artist: Schema.Attribute.String & Schema.Attribute.Required;
+    artist_link: Schema.Attribute.String;
+    bandcamp_link: Schema.Attribute.String;
+    copyright: Schema.Attribute.String & Schema.Attribute.Required;
+    cover: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    label_release_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::hobby-release.hobby-release'
     > &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
+    notes: Schema.Attribute.Text;
+    player_embed_code: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    release_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    spotify_link: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    type: Schema.Attribute.Enumeration<['Single', 'Album', 'EP']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Single'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -911,6 +965,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::archive-release.archive-release': ApiArchiveReleaseArchiveRelease;
       'api::hobby-release.hobby-release': ApiHobbyReleaseHobbyRelease;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
