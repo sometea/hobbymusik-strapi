@@ -38,7 +38,7 @@
       "type": "string"
     },
     "player_embed_code": {
-      "type": "string"
+      "type": "text"
     },
     "artist_link": {
       "type": "string"
