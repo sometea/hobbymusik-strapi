@@ -9,6 +9,7 @@ export default ({ env }) => [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  'global::no-cdn-cache',
   {
     name: 'strapi::security',
     config: {
