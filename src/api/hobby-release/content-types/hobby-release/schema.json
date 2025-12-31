@@ -65,6 +65,11 @@
       "required": true,
       "unique": true,
       "min": 0
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }

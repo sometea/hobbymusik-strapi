@@ -456,6 +456,7 @@ export interface ApiArchiveReleaseArchiveRelease
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     release_date: Schema.Attribute.Date;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -502,6 +503,7 @@ export interface ApiHobbyReleaseHobbyRelease
     player_embed_code: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     release_date: Schema.Attribute.Date & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     spotify_link: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     type: Schema.Attribute.Enumeration<['Single', 'Album', 'EP']> &
