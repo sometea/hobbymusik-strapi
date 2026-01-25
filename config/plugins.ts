@@ -3,7 +3,10 @@ upload: {
     config: {
       providerOptions: {
         localServer: {
-          maxage: 604800000, // 7 days in ms
+          setHeaders: (res) => {
+            // allow caching by CDNs and browsers for 7 days
+            res.setHeader('Cache-Control', 'public, max-age=604800');
+          },
         },
       },
     },
