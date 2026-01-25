@@ -3,7 +3,7 @@ upload: {
     config: {
       providerOptions: {
         localServer: {
-          maxage: 604800, // 7 days in seconds
+          maxage: 604800000, // 7 days in ms
         },
       },
     },
